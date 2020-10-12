@@ -14,29 +14,9 @@ using namespace std;
 #include <cstdio>
 #include <sstream> 
 
-
-struct duomenys
-{
-    string vardai;
-    string pavardes;
-    vector<string> pazymiai;
-};
-
-struct studentas
-{
-    string vardai;
-    string pavardes;
-    vector<int> pazymiai;
-};
-
-struct rusiavimas
-{
-    string vardai;
-    string pavardes;
-    double vidurkiai;
-    double medianos;
-};
-
+#include "duomenys.h"
+#include "studentas.h"
+#include "rusiavimas.h"
 
 double gal_rez(int egzaminas, vector<int> nd);
 double vid(int egzaminas, vector<int> nd);
