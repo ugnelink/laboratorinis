@@ -1,3 +1,5 @@
+#include "mano_bib.h"
+
 double vid(int egzaminas, vector<int>nd)
 {
     double v;
