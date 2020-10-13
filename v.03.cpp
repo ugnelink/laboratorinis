@@ -6,14 +6,6 @@
 bool palygintiVardus(rusiavimas& a, rusiavimas& b) { return a.vardai < b.vardai; };
 bool palygintiPavardes(rusiavimas& a, rusiavimas& b) { return a.pavardes < b.pavardes; };
 
-bool isNumber(string s)
-{
-    for (int i = 0; i < s.length(); i++)
-        if (isdigit(s[i]) == false)
-            return false;
-
-    return true;
-}
 
 int main()
 {

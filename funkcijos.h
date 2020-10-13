@@ -24,5 +24,6 @@ double gal_rez(int, vector<int>);
 double vid(int, vector<int>);
 double gal_mediana(int, vector<int>);
 void spausdinimas(vector<string>, vector<string>, vector<double>, vector<double>, vector<double>);
+bool isNumber(string);
 
 #endif
