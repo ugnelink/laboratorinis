@@ -62,7 +62,7 @@ int main()
 
     string atsakymas;
 
-    cout << "Ar norite,  kad duomenys butu nuskaityti is failo? ('N'-ne/'T'-taip)\n";
+    cout << "Ar norite, kad duomenys butu nuskaityti is failo? ('T'-taip/'N'-ne)\n";
     cin >> atsakymas;
 
     if (atsakymas == "T")
@@ -181,7 +181,7 @@ int main()
             vector<studentas>().swap(studentai);
 
             string var;
-            cout << "Rusiuoti pagal pavardes ar vardus ? (V/P)";
+            cout << "Rusiuoti pagal pavardes ar vardus? (V/P)";
             cin >> var;
 
             if (var == "V")
@@ -245,7 +245,7 @@ int main()
                     {
                         pavardes.push_back(pavarde);
 
-                        cout << "Ar balus sugeneruoti automatiskai? (T/N) \n";
+                        cout << "Ar balus sugeneruoti automatiskai? ('T'-taip/'N'-ne) \n";
                         string ats;
                         cin >> ats;
 
@@ -261,7 +261,7 @@ int main()
                                 cout << "Sugeneruotas balas:  " << tmp << "\n";
 
 
-                                cout << "Ar jau ivesti visi rezulatatai (T/N)? \n";
+                                cout << "Ar jau ivesti visi rezulatatai ('T'-taip/'N'-ne)? \n";
                                 string ats2;
                                 cin >> ats2;
 
@@ -278,7 +278,7 @@ int main()
                                 if (tmp > 0 && tmp <= 10)
                                 {
                                     nd.push_back(tmp);
-                                    cout << "Ar jau ivesti visi rezulatatai (T/N)? \n";
+                                    cout << "Ar jau ivesti visi rezulatatai ('T'-taip/'N'-ne)? \n";
                                     string ats2;
                                     cin >> ats2;
 
@@ -296,7 +296,7 @@ int main()
                             cout << "Klaida! reikia pasirinkti T arba N";
                         }
 
-                        cout << "Ar egzamino bala sugeneruoti automatiskai? (T/N) \n";
+                        cout << "Ar egzamino bala sugeneruoti automatiskai? ('T'-taip/'N'-ne) \n";
                         string ats2;
                         cin >> ats2;
 
@@ -341,4 +341,8 @@ int main()
         spausdinimas(vardai, pavardes, galutinis1, galutiniai, galutiniai2);
 
     }
+    else {
+    cout << "Klaida! Reikai pasirinkti T arba N\n";
+    }
 }
+
