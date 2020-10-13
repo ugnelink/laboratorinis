@@ -1,4 +1,6 @@
 #pragma once
+#ifndef MANO_BIB_H_INCLUDED
+#define MANO_BIB_H_INCLUDED
 
 using namespace std;
 
@@ -70,3 +72,5 @@ void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double>
 
     }
 }
+
+#endif
