@@ -14,14 +14,35 @@ using namespace std;
 #include <cstdio>
 #include <sstream> 
 
-#include "duomenys.h"
-#include "studentas.h"
-#include "rusiavimas.h"
+//#include "duomenys.h""
+//#include "studentas.h"
+//#include "rusiavimas.h"
 
+struct duomenys
+{
+    string vardai;
+    string pavardes;
+    vector<string> pazymiai;
+};
+
+struct studentas
+{
+    string vardai;
+    string pavardes;
+    vector<int> pazymiai;
+};
+
+struct rusiavimas
+{
+    string vardai;
+    string pavardes;
+    double vidurkiai;
+    double medianos;
+};
 double gal_rez(int egzaminas, vector<int> nd);
 double vid(int egzaminas, vector<int> nd);
 double gal_mediana(int egzaminas, vector<int> nd);
-void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double> galutiniai, vector<double>galutiniai2);
+void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double> galutinis1, vector<double> galutiniai, vector<double>galutiniai2);
 
 bool palygintiVardus(rusiavimas& a, rusiavimas& b) { return a.vardai < b.vardai; };
 bool palygintiPavardes(rusiavimas& a, rusiavimas& b) { return a.pavardes < b.pavardes; };
@@ -35,6 +56,45 @@ bool isNumber(string s)
     return true;
 }
 
+double vid(int egzaminas, vector<int>nd)
+{
+    double v;
+    v = accumulate(nd.begin(), nd.end(), 0.000) / nd.size();
+
+    return v;
+}
+
+double gal_rez(int egzaminas, vector<int> nd)
+{
+    double vidurkis, galutinis1;
+
+    vidurkis = accumulate(nd.begin(), nd.end(), 0.000) / nd.size();
+    galutinis1 = (0.4 * vidurkis) + (0.6 * egzaminas);
+
+    return galutinis1;
+}
+
+double gal_mediana(int egzaminas, vector<int> nd)
+{
+    vector<double> skaiciai;
+    for (int i = 0; i < nd.size(); i++) {
+        skaiciai.push_back(nd.at(i));
+    }
+
+    skaiciai.push_back(egzaminas);
+
+    sort(skaiciai.begin(), skaiciai.end());
+
+    if (skaiciai.size() % 2 == 0)
+    {
+        return (skaiciai[skaiciai.size() / 2 - 1] + skaiciai[skaiciai.size() / 2]) / 2;
+    }
+    else
+    {
+        return skaiciai[skaiciai.size() / 2];
+    }
+}
+
 
 int main()
 {
@@ -46,6 +106,7 @@ int main()
     vector<int> nd;
     vector<string> vardai;
     vector<string> pavardes;
+    vector<double>galutinis1;
     vector<double> galutiniai;
     vector<double> galutiniai2;
 
@@ -55,7 +116,7 @@ int main()
 
     string atsakymas;
 
-    cout << "Ar norite nuskaityti, kad duomenys butu nuskaityti is failo? ('N'-ne/'T'-taip)\n";
+    cout << "Ar norite, kad duomenys butu nuskaityti is failo? ('N'-ne/'T'-taip)\n";
     cin >> atsakymas;
 
     if (atsakymas == "T")
@@ -314,6 +375,8 @@ int main()
                             cout << "Klaida! reikia pasirinkti T arba N";
                         }
 
+                        galutinis1.push_back(gal_rez(egzaminas, nd));
+
                         galutiniai.push_back(vid(egzaminas, nd));
 
                         galutiniai2.push_back(gal_mediana(egzaminas, nd));
@@ -329,57 +392,18 @@ int main()
             cout << "Studentu skaicius turi buti teigiamas skaicius \n";
         }
 
-        spausdinimas(vardai, pavardes, galutiniai, galutiniai2);
+        spausdinimas(vardai, pavardes, galutinis1, galutiniai, galutiniai2);
 
     }
 }
 
-double vid(int egzaminas, vector<int>nd)
+void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double>galutinis1, vector<double> galutiniai, vector<double> galutiniai2)
 {
-    double v;
-    v= accumulate(nd.begin(), nd.end(), 0.000) / nd.size();
-
-    return v;
-}
-
-double gal_rez(int egzaminas, vector<int> nd)
-{
-    double vidurkis, galutinis1;
-
-    vidurkis = accumulate(nd.begin(), nd.end(), 0.000) / nd.size();
-    galutinis1 = (0.4 * vidurkis) + (0.6 * egzaminas);
-
-    return galutinis1;
-}
-
-double gal_mediana(int egzaminas, vector<int> nd)
-{
-    vector<double> skaiciai;
-    for (int i = 0; i < nd.size(); i++) {
-        skaiciai.push_back(nd.at(i));
-    }
-
-    skaiciai.push_back(egzaminas);
-
-    sort(skaiciai.begin(), skaiciai.end());
-
-    if (skaiciai.size() % 2 == 0)
-    {
-        return (skaiciai[skaiciai.size() / 2 - 1] + skaiciai[skaiciai.size() / 2]) / 2;
-    }
-    else
-    {
-        return skaiciai[skaiciai.size() / 2];
-    }
-}
-
-void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double> galutiniai, vector<double> galutiniai2)
-{
-    cout << setw(5)<< "Vardas" << setw(25) << "Pavarde" << setw(25) << "Vidurkis" << setw(25) << "Mediana" << endl;
+    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis" << setw(25) << "Vidurkis" << setw(25) << "Mediana" << endl;
     cout << "---------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < vardai.size(); i++) {
 
-        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) << galutiniai[i] << setw(25) << galutiniai2[i] << endl;
+        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) << galutinis1[i] << setw(25) << galutiniai[i] << setw(25) << galutiniai2[i] << endl;
 
     }
 }
