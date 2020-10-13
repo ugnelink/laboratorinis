@@ -1,12 +1,4 @@
-#include "mano_bib.h"
-
-//#include "isNumber.h"
-//#include "rezultatai.h"
-
-//#include "rezultatai.h"
-//#include "duomenys.h""
-//#include "studentas.h"
-//#include "rusiavimas.h"
+#include "funkcijos.h"
 
 struct duomenys
 {
