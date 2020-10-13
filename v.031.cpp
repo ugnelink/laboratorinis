@@ -16,6 +16,9 @@ using namespace std;
 
 #include "vid.h"
 #include "gal_rez.h"
+#include "mediana.h"
+#include "spausdinimas.h"
+#include "isNumber.h"
 
 //#include "duomenys.h""
 //#include "studentas.h"
@@ -43,42 +46,8 @@ struct rusiavimas
     double medianos;
 };
 
-double gal_mediana(int egzaminas, vector<int> nd);
-void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double> galutinis1, vector<double> galutiniai, vector<double>galutiniai2);
-
 bool palygintiVardus(rusiavimas& a, rusiavimas& b) { return a.vardai < b.vardai; };
 bool palygintiPavardes(rusiavimas& a, rusiavimas& b) { return a.pavardes < b.pavardes; };
-
-bool isNumber(string s)
-{
-    for (int i = 0; i < s.length(); i++)
-        if (isdigit(s[i]) == false)
-            return false;
-
-    return true;
-}
-
-double gal_mediana(int egzaminas, vector<int> nd)
-{
-    vector<double> skaiciai;
-    for (int i = 0; i < nd.size(); i++) {
-        skaiciai.push_back(nd.at(i));
-    }
-
-    skaiciai.push_back(egzaminas);
-
-    sort(skaiciai.begin(), skaiciai.end());
-
-    if (skaiciai.size() % 2 == 0)
-    {
-        return (skaiciai[skaiciai.size() / 2 - 1] + skaiciai[skaiciai.size() / 2]) / 2;
-    }
-    else
-    {
-        return skaiciai[skaiciai.size() / 2];
-    }
-}
-
 
 int main()
 {
@@ -377,17 +346,6 @@ int main()
         }
 
         spausdinimas(vardai, pavardes, galutinis1, galutiniai, galutiniai2);
-
-    }
-}
-
-void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double>galutinis1, vector<double> galutiniai, vector<double> galutiniai2)
-{
-    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis" << setw(25) << "Vidurkis" << setw(25) << "Mediana" << endl;
-    cout << "---------------------------------------------------------------------------------------------------------\n";
-    for (int i = 0; i < vardai.size(); i++) {
-
-        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) << galutinis1[i] << setw(25) << galutiniai[i] << setw(25) << galutiniai2[i] << endl;
 
     }
 }

@@ -1,3 +1,8 @@
+using namespace std;
+
+#include <iostream>
+#include <vector>
+
 struct duomenys
 {
     string vardai;

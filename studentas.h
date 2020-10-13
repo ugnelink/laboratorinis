@@ -1,1 +1,3 @@
-struct studentas; 
+#pragma once
+
+struct studentas;

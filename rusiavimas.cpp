@@ -1,3 +1,8 @@
+using namespace std;
+
+#include <iostream>
+#include"rusiavimas.h"
+
 struct rusiavimas
 {
     string vardai;
