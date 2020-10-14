@@ -211,7 +211,7 @@ int main()
                     {
                         pavardes.push_back(pavarde);
 
-                        cout << "Ar balus sugeneruoti automatiskai? ('T'-taip/'N'-ne) \n";
+                        cout << "Ar namu darbu pazymius sugeneruoti automatiskai? ('T'-taip/'N'-ne) \n";
                         string ats;
                         cin >> ats;
 
