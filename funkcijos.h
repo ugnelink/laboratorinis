@@ -2,7 +2,6 @@
 #ifndef FUNKCIJOS_H_INCLUDED
 #define FUNKCIJOS_H_INCLUDED
 
-
 using namespace std;
 
 #include <string>

@@ -193,6 +193,7 @@ int main()
 
                 cout << "Iveskite studento varda: \n";
                 cin >> vardas;
+
                 if (isdigit(vardas[i]))
                 {
                     cout << "Klaida! Vardas negali buti skaicius\n";
@@ -250,15 +251,17 @@ int main()
                                     if (ats2 == "T") {
                                         break;
                                     }
+
                                 }
                                 else {
                                     cout << "Klaida! Pazimys turi buti 10-baleje sistemoje.\n";
                                 }
                             }
                         }
+                      
                         else
                         {
-                            cout << "Klaida! reikia pasirinkti T arba N";
+                            cout << "Klaida! reikia pasirinkti T arba N.\n";
                         }
 
                         cout << "Ar egzamino bala sugeneruoti automatiskai? ('T'-taip/'N'-ne) \n";
@@ -272,18 +275,27 @@ int main()
                             egzaminas = rand() % max;
                             cout << "Egzamino balas  " << egzaminas << "\n";
                         }
-                        else if (ats == "N")
+                        else if (ats2 == "N")
                         {
                             cout << "Iveskite egzamino rezultata: \n";
                             cin >> egzaminas;
-                            if (egzaminas < 0 || egzaminas > 11)
-                            {
-                                cout << "Klaida! Egzamino rezultatas turi buti 10-baleje sistemoje.\n";
+                            try {
+                                if (egzaminas < 0 || egzaminas >= 11) {
+                                    throw 3;
+                                }
+                            }
+                            catch (int x) {
+                                cout << "Klaida! Egzamino rezultatas turi buti 10-baleje sistemoje.ERROR: "<<x<<endl;
+                            } 
+                        }
+                        
+                        try {
+                            if (ats2 != "T" && ats2 != "N") {
+                                throw 1;
                             }
                         }
-                        else
-                        {
-                            cout << "Klaida! reikia pasirinkti T arba N";
+                        catch (int x) {
+                            cout << "Klaida! Reikia pasirinkti T arba N. ERROR: " << x << endl;
                         }
 
                         galutinis1.push_back(gal_rez(egzaminas, nd));
@@ -299,16 +311,19 @@ int main()
                 }
             }
         }
-        else {
-            cout << "Studentu skaicius turi buti teigiamas skaicius \n";
+        try {
+            if (sk<=0) {
+                throw 2;
+            }
+        }
+        catch (int x) {
+            cout << "Klaida! Studentu skaicius turi buti teigiamas sveikasis skaicius. ERROR: " << x << endl;
         }
 
         spausdinimas(vardai, pavardes, galutinis1, galutiniai, galutiniai2);
-
     }
- 
     try {
-        if (atsakymas != "T" || atsakymas != "N") {
+        if (atsakymas != "T" && atsakymas != "N") {
             throw 1;
         }
     }
