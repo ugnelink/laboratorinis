@@ -306,8 +306,13 @@ int main()
         spausdinimas(vardai, pavardes, galutinis1, galutiniai, galutiniai2);
 
     }
-    else {
-    cout << "Klaida! Reikai pasirinkti T arba N\n";
+ 
+    try {
+        if (atsakymas != "T" || atsakymas != "N") {
+            throw 1;
+        }
+    }
+    catch (int x) {
+        cout << "Klaida! Reikia pasirinkti T arba N. ERROR: "<<x<<endl;
     }
 }
-
