@@ -1,13 +1,5 @@
 #include "funkcijos.h"
 
-double vid(int egzaminas, vector<int>nd)
-{
-    double v;
-    v = accumulate(nd.begin(), nd.end(), 0.000) / nd.size();
-
-    return v;
-}
-
 double gal_rez(int egzaminas, vector<int> nd)
 {
     double vidurkis, galutinis1;
@@ -38,16 +30,17 @@ double gal_mediana(int egzaminas, vector<int> nd)
         return skaiciai[skaiciai.size() / 2];
     }
 }
-void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double>galutinis1, vector<double> galutiniai, vector<double> galutiniai2)
+void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double> galutiniai)
 {
-    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis" << setw(25) << "Vidurkis" << setw(25) << "Mediana" << endl;
+    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis" << endl;
     cout << "---------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < vardai.size(); i++) {
 
-        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) << galutinis1[i] << setw(25) << galutiniai[i] << setw(25) << galutiniai2[i] << endl;
+        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) <<galutiniai[i]  << endl;
 
     }
 }
+
 bool isNumber(string s)
 {
     for (int i = 0; i < s.length(); i++)

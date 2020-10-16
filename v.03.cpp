@@ -1,189 +1,24 @@
 #include "funkcijos.h"
-#include "duomenys.h"
-#include "studentas.h"
-#include "rusiavimas.h"
-
-bool palygintiVardus(rusiavimas& a, rusiavimas& b) { return a.vardai < b.vardai; };
-bool palygintiPavardes(rusiavimas& a, rusiavimas& b) { return a.pavardes < b.pavardes; };
-
 
 int main()
 {
-    ofstream myfile;
-    fstream infile;
-
+    
     int sk, egzaminas{}, tmp;
 
     vector<int> nd;
     vector<string> vardai;
     vector<string> pavardes;
-    vector<double>galutinis1;
     vector<double> galutiniai;
     vector<double> galutiniai2;
 
     string vardas, pavarde, vardas_i, pavarde_i;
 
+    char mv; 
+
     int egzaminai;
 
     string atsakymas;
 
-    cout << "Ar norite, kad duomenys butu nuskaityti is failo? ('T'-taip/'N'-ne)\n";
-    cin >> atsakymas;
-
-    if (atsakymas == "T")
-    {
-        vector<studentas> studentai;
-        vector<duomenys> info;
-        vector<int> tikrinimas;
-
-        string failo_pav;
-
-        cout << "Iveskite failo pavadinima: \n";
-        cin >> failo_pav;
-
-        infile.open(failo_pav);
-
-        int rows = 0, cols = 0;
-        string eilute, reiksme;
-
-        while (getline(infile, eilute)) {
-            rows++;
-            if (rows == 1)
-            {
-                stringstream ss(eilute);
-                while (ss >> reiksme)
-                    cols++;
-            }
-        }
-        infile.close();
-
-        infile.open(failo_pav);
-
-        string rez;
-        vector<string> visi_rezultatai_i;
-        vector<string> visi_rezultatai;
-
-        if (infile.fail())
-        {
-            perror(nullptr);
-            return 1;
-        }
-        else
-        {
-
-            for (int i = 0; i < 1; i++)
-            {
-                infile >> vardas_i >> pavarde_i;
-
-                for (int j = 0; j < cols - 2; j++)
-                {
-                    infile >> rez;
-                    visi_rezultatai_i.push_back(rez);
-                }
-
-                info.push_back(duomenys{ vardas_i, pavarde_i, visi_rezultatai_i });
-                visi_rezultatai_i.clear();
-
-                vector<string>().swap(visi_rezultatai_i);
-            }
-
-            for (int i = 1; i < rows; i++)
-            {
-                infile >> vardas >> pavarde;
-
-                for (int j = 0; j < cols - 2; j++)
-                {
-                    infile >> rez;
-                    visi_rezultatai.push_back(rez);
-
-                    for (int i = 0; i < visi_rezultatai.size(); i++)
-                    {
-                        if (!isNumber(visi_rezultatai[i]))
-                        {
-                            cout << "Klaida: faile rezultatu vietose yra raides! \n";
-                        }
-                        else
-                        {
-                            tikrinimas.push_back(stoi(visi_rezultatai[i]));
-                        }
-
-                        visi_rezultatai.clear();
-                        vector<string>().swap(visi_rezultatai);
-                    }
-                }
-
-                studentai.push_back(studentas{ vardas, pavarde, tikrinimas });
-
-                tikrinimas.clear();
-                vector<int>().swap(tikrinimas);
-            }
-
-            vector<double> vidurkiai;
-            vector<double> medianos;
-
-
-            for (int i = 0; i < studentai.size(); i++)
-            {
-
-                cout << "Skaiciuojama mediana ir vidurkis \n";
-
-                vidurkiai.push_back(gal_rez(studentai[i].pazymiai.back(), studentai[i].pazymiai));
-                medianos.push_back(gal_mediana(studentai[i].pazymiai.back(), studentai[i].pazymiai));
-            }
-
-            vector<rusiavimas> stud_rus;
-
-            for (int i = 0; i < studentai.size(); i++)
-            {
-                stud_rus.push_back(rusiavimas{ studentai[i].vardai, studentai[i].pavardes, vidurkiai[i], medianos[i] });
-            }
-
-            vidurkiai.clear();
-            medianos.clear();
-            studentai.clear();
-            vector<double>().swap(vidurkiai);
-            vector<double>().swap(medianos);
-            vector<studentas>().swap(studentai);
-
-            string var;
-            cout << "Rusiuoti pagal pavardes ar vardus? (V/P)";
-            cin >> var;
-
-            if (var == "V")
-            {
-                sort(stud_rus.begin(), stud_rus.end(), palygintiVardus);
-            }
-            else if (var == "P")
-            {
-                sort(stud_rus.begin(), stud_rus.end(), palygintiPavardes);
-            }
-
-            myfile.open("kursiokai.txt");
-
-            if (myfile.fail())
-            {
-                perror(nullptr);
-                return 1;
-            }
-            else
-            {
-                for (int i = 0; i < info.size(); i++)
-                {
-                    myfile << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Vidurkis" << setw(25) << "Mediana" << "\n";
-                }
-
-                for (int i = 0; i < stud_rus.size(); i++)
-                {
-                    myfile << stud_rus[i].vardai << setw(25) << stud_rus[i].pavardes << setw(25) << stud_rus[i].vidurkiai << setw(25) << stud_rus[i].medianos << "\n";
-                }
-            }
-            myfile.close();
-            stud_rus.clear();
-            vector<rusiavimas>().swap(stud_rus);
-        }
-    }
-    else if (atsakymas == "N")
-    {
         cout << "Iveskite studentu skaiciu: \n";
         cin >> sk;
 
@@ -279,28 +114,16 @@ int main()
                         {
                             cout << "Iveskite egzamino rezultata: \n";
                             cin >> egzaminas;
-                            try {
                                 if (egzaminas < 0 || egzaminas >= 11) {
-                                    throw 3;
-                                }
-                            }
-                            catch (int x) {
-                                cout << "Klaida! Egzamino rezultatas turi buti 10-baleje sistemoje.ERROR: "<<x<<endl;
-                            } 
+                                    
+                                cout << "Klaida! Egzamino rezultatas turi buti 10-baleje sistemoje.\n";
+                                  } 
                         }
-                        
-                        try {
-                            if (ats2 != "T" && ats2 != "N") {
-                                throw 1;
-                            }
-                        }
-                        catch (int x) {
-                            cout << "Klaida! Reikia pasirinkti T arba N. ERROR: " << x << endl;
-                        }
+                        else {
+                            cout << "Klaida! Reikia pasirinkti T arba N.\n ";
+                              }
 
-                        galutinis1.push_back(gal_rez(egzaminas, nd));
-
-                        galutiniai.push_back(vid(egzaminas, nd));
+                        galutiniai.push_back(gal_rez(egzaminas, nd));
 
                         galutiniai2.push_back(gal_mediana(egzaminas, nd));
 
@@ -311,23 +134,23 @@ int main()
                 }
             }
         }
-        try {
-            if (sk<=0) {
-                throw 2;
-            }
+        else {
+        cout << "Studentu skaicius turi buti teigiamas skaicius \n";
         }
-        catch (int x) {
-            cout << "Klaida! Studentu skaicius turi buti teigiamas sveikasis skaicius. ERROR: " << x << endl;
+        cout << "Mediana ar Vidurkis (M/V): \n";
+        cin >> mv;
+
+        if (strcmp(&mv, "V"))
+        {
+            spausdinimas(vardai, pavardes, galutiniai);
+        }
+        else if (strcmp(&mv, "M"))
+        {
+            spausdinimas(vardai, pavardes, galutiniai2);
+        }
+        else {
+            cout << "Reikia pasirinkti M arba V\n";
         }
 
-        spausdinimas(vardai, pavardes, galutinis1, galutiniai, galutiniai2);
-    }
-    try {
-        if (atsakymas != "T" && atsakymas != "N") {
-            throw 1;
-        }
-    }
-    catch (int x) {
-        cout << "Klaida! Reikia pasirinkti T arba N. ERROR: "<<x<<endl;
-    }
+    
 }
