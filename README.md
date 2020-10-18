@@ -1,2 +1,2 @@
 # laboratorinis
-v.03 versijoje patobulinta v.02 versija. Pagal užduoties reikalavimus panaudoti nauji duomenų tipai(struct), ir sukurti keli nauji .h ir .cpp failai. Pagrindinėje programoje naudojamos bibliotekos ir funkcijos sukeltos į failus funkcijos.h ir funkcijos.cpp, atitinkamai naudojamos strukturos sukeltos į rusiavimas.h, studentas.h ir duomenys.h failus. Keliose tinkamose vietose taip pat panaudotas išimčių valdymas.  
+v.04 versijoja. Pagal užduoties reikalavimus bandžiau sugeneruokiti penkis atsitiktinius studentų sąrašų failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų. Taip pat bandžiau tuos duomenis surušiuoti į atskirus txt failus pagal gautus pažymius. 
