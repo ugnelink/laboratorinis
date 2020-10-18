@@ -1,4 +1,5 @@
 #include "funkcijos.h"
+#include "struktura.h"
 
 int main()
 {
@@ -14,7 +15,11 @@ int main()
     string vardas, pavarde, vardas_i, pavarde_i;
 
     string atsakymas;
+    cout << "Ar norite faila sugeneruoti automatiskai?(T/N)\n";
+    string tn; 
+    cin >> tn;
 
+    if (tn =="N"){
         cout << "Iveskite studentu skaiciu: \n";
         cin >> sk;
 
@@ -54,10 +59,10 @@ int main()
                                 mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
                                 uniform_int_distribution<int> dist(0, 10);
                                 for (int i = 0; i < 1; ++i) {
-                                    cout << "Sugeneruotas balas: " << dist(mt)<<endl;
+                                    cout << "Sugeneruotas balas: " << dist(mt) << endl;
                                     nd.push_back(dist(mt));
                                 }
-                        
+
                                 cout << "Ar jau ivesti visi rezulatatai ('T'-taip/'N'-ne)? \n";
                                 string ats2;
                                 cin >> ats2;
@@ -89,7 +94,7 @@ int main()
                                 }
                             }
                         }
-                      
+
                         else
                         {
                             cout << "Klaida! reikia pasirinkti T arba N.\n";
@@ -110,14 +115,14 @@ int main()
                         {
                             cout << "Iveskite egzamino rezultata: \n";
                             cin >> egzaminas;
-                                if (egzaminas < 0 || egzaminas >= 11) {
-                                    
+                            if (egzaminas < 0 || egzaminas >= 11) {
+
                                 cout << "Klaida! Egzamino rezultatas turi buti 10-baleje sistemoje.\n";
-                                  } 
+                            }
                         }
                         else {
                             cout << "Klaida! Reikia pasirinkti T arba N.\n ";
-                              }
+                        }
 
                         galutiniai.push_back(gal_rez(egzaminas, nd));
 
@@ -131,5 +136,17 @@ int main()
             }
         }
         spausdinimas(vardai, pavardes, galutiniai, galutiniai2);
+    }
+    else {
+
+       srand(time(0));
+       cout << "Sugeneruoti vardai ir pavardes" << endl;
+       vector <studentas> a;
+       for (int i = 0; i < 10000; i++) {
+           a.push_back(gen());
+       }
+       spausdinimas(a);
+    }
+        
 }
 
