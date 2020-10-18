@@ -1,6 +1,19 @@
 #include "funkcijos.h"
 #include "struktura.h"
 
+struct vargsiukai {
+    string vardai;
+    string pavardes;
+    int nd;
+};
+
+struct galvociai {
+    string vardai;
+    string pavardes;
+    int nd;
+};
+
+
 int main()
 {
     
@@ -191,6 +204,39 @@ int main()
            }
            spausdinimas(a);
        }
+       vector<studentas> sarasas;
+       vector<vargsiukai> varg;
+       vector<galvociai> galv;
+
+       for (int i = 0; i < sarasas.size(); i++) {
+           if (sarasas[i].nd < 5) {
+               varg.push_back(vargsiukai{ sarasas[i].vardas, sarasas[i].pavarde, sarasas[i].nd });
+           }
+           else if (sarasas[i].nd >= 5) {
+               galv.push_back(galvociai{ sarasas[i].vardas, sarasas[i].pavarde, sarasas[i].nd });
+           }
+       }
+
+       ofstream vargsiukai;
+       ofstream galvociai;
+
+       vargsiukai.open("vargsiukai.txt");
+       galvociai.open("galvociai.txt");
+
+       vargsiukai << left << setw(30) << "Vardas" << setw(30) << "Pavarde" << setw(30) << "Pazymis" << endl;
+
+       for (int i = 0; i < varg.size(); i++) {
+           vargsiukai << left << setw(30) << varg[i].vardai << setw(30) << varg[i].pavardes << setw(30)<< varg[i].nd << endl;
+       }
+
+       galvociai << left << setw(30) << "Vardas" << setw(30) << "Pavarde" << setw(30) << "Pazymis" << endl;
+
+       for (int i = 0; i < galv.size(); i++) {
+           galvociai << left << setw(30) << galv[i].vardai << setw(30) << galv[i].pavardes << setw(30) << galv[i].nd << endl;
+       }
+
+       vargsiukai.close();
+       galvociai.close();
 
     }
     else {
