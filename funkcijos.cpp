@@ -1,4 +1,10 @@
 #include "funkcijos.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <time.h>
+#include <random>
+#include <chrono>
 
 double gal_rez(int egzaminas, vector<int> nd)
 {
@@ -30,13 +36,13 @@ double gal_mediana(int egzaminas, vector<int> nd)
         return skaiciai[skaiciai.size() / 2];
     }
 }
-void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double> galutiniai)
+void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double>galutiniai,  vector<double> galutiniai2)
 {
-    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis" << endl;
+    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis(vid)" << setw(25) << "Galutinis(med.)" << endl;
     cout << "---------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < vardai.size(); i++) {
 
-        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) <<galutiniai[i]  << endl;
+        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) << galutiniai[i] << setw(25) << galutiniai2[i] << endl;
 
     }
 }
@@ -49,4 +55,5 @@ bool isNumber(string s)
 
     return true;
 }
+
 

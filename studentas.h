@@ -1,14 +1,14 @@
-#pragma once
-#ifndef STUDENTAS_H_INCLUDED
-#define STUDENTAS_H_INCLUDED
+//#pragma once
+//#ifndef STUDENTAS_H_INCLUDED
+//#define STUDENTAS_H_INCLUDED
 
-#include "funkcijos.h"
+//#include "funkcijos.h"
 
-struct studentas
-{
-    string vardai;
-    string pavardes;
-    vector<int> pazymiai;
-};
+//struct studentas
+//{
+  //  string vardai;
+    //string pavardes;
+    //vector<int> pazymiai;
+//};
 
-#endif
+//#endif

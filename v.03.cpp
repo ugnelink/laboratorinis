@@ -13,10 +13,6 @@ int main()
 
     string vardas, pavarde, vardas_i, pavarde_i;
 
-    char mv; 
-
-    int egzaminai;
-
     string atsakymas;
 
         cout << "Iveskite studentu skaiciu: \n";
@@ -54,14 +50,14 @@ int main()
 
                             while (true) {
 
-                                int max = 10;
-                                srand(time(0));
-                                tmp = rand() % max;
-                                nd.push_back(tmp);
-
-                                cout << "Sugeneruotas balas:  " << tmp << "\n";
-
-
+                                using hrClock = chrono::high_resolution_clock;
+                                mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
+                                uniform_int_distribution<int> dist(0, 10);
+                                for (int i = 0; i < 1; ++i) {
+                                    cout << "Sugeneruotas balas: " << dist(mt)<<endl;
+                                    nd.push_back(dist(mt));
+                                }
+                        
                                 cout << "Ar jau ivesti visi rezulatatai ('T'-taip/'N'-ne)? \n";
                                 string ats2;
                                 cin >> ats2;
@@ -108,7 +104,7 @@ int main()
                             int max = 10;
                             srand(time(0));
                             egzaminas = rand() % max;
-                            cout << "Egzamino balas  " << egzaminas << "\n";
+                            cout << "Sugeneruotas egzamino balas:  " << egzaminas << "\n";
                         }
                         else if (ats2 == "N")
                         {
@@ -134,23 +130,6 @@ int main()
                 }
             }
         }
-        else {
-        cout << "Studentu skaicius turi buti teigiamas skaicius \n";
-        }
-        cout << "Mediana ar Vidurkis (M/V): \n";
-        cin >> mv;
-
-        if (strcmp(&mv, "V"))
-        {
-            spausdinimas(vardai, pavardes, galutiniai);
-        }
-        else if (strcmp(&mv, "M"))
-        {
-            spausdinimas(vardai, pavardes, galutiniai2);
-        }
-        else {
-            cout << "Reikia pasirinkti M arba V\n";
-        }
-
-    
+        spausdinimas(vardai, pavardes, galutiniai, galutiniai2);
 }
+
