@@ -135,18 +135,69 @@ int main()
                 }
             }
         }
+
+        else {
+            cout << "Pasirinkite teigiama sveikaji skaiciu" << endl;
+        }
         spausdinimas(vardai, pavardes, galutiniai, galutiniai2);
     }
-    else {
+    else if (tn=="T"){
 
-       srand(time(0));
-       cout << "Sugeneruoti vardai ir pavardes" << endl;
-       vector <studentas> a;
-       for (int i = 0; i < 10000; i++) {
-           a.push_back(gen());
+       cout << "Pasirinkite irasu skaiciu(1000/10000/100000/1000000/10000000)" << endl;
+       int irasai;
+       cin >> irasai;
+       if (irasai == 1000) {
+           srand(time(0));
+           cout << "Sugeneruoti vardai ir pavardes" << endl;
+           vector <studentas> a;
+           for (int i = 0; i < 1000; i++) {
+               a.push_back(gen());
+           }
+           spausdinimas(a);
        }
-       spausdinimas(a);
+       else if (irasai == 10000) {
+           srand(time(0));
+           cout << "Sugeneruoti vardai ir pavardes" << endl;
+           vector <studentas> a;
+           for (int i = 0; i < 10000; i++) {
+               a.push_back(gen());
+           }
+           spausdinimas(a);
+       }
+       else if (irasai == 100000) {
+           srand(time(0));
+           cout << "Sugeneruoti vardai ir pavardes" << endl;
+           vector <studentas> a;
+           for (int i = 0; i < 100000; i++) {
+               a.push_back(gen());
+           }
+           spausdinimas(a);
+       }
+       else if (irasai == 1000000) {
+           srand(time(0));
+           cout << "Sugeneruoti vardai ir pavardes" << endl;
+           vector <studentas> a;
+           for (int i = 0; i < 1000000; i++) {
+               a.push_back(gen());
+           }
+           spausdinimas(a);
+       }
+       else if (irasai == 10000000) {
+           srand(time(0));
+           cout << "Sugeneruoti vardai ir pavardes" << endl;
+           vector <studentas> a;
+           for (int i = 0; i < 10000000; i++) {
+               a.push_back(gen());
+           }
+           spausdinimas(a);
+       }
+
     }
+    else {
+        cout << "Pasirinkite T arba N" << endl;
+        return main(); 
+    }
+    
         
 }
 
