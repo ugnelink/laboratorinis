@@ -26,7 +26,7 @@ studentai10000000.txt:
 
 
 
-#Testavimo sistemos parametrai:
+Testavimo sistemos parametrai:
 
 CPU: Intel(R) Pentium(R)3805U @1.90GHz 1.90 GHz
 
