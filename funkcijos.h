@@ -21,8 +21,6 @@ using namespace std;
 
 #include "struktura.h";
 
-// suskirtymas kazkaip i failus nzn ar naudojamas void rusiavimas(list<studentas> sarasas);
-
 bool compareVardai(studentas a, studentas b);
 bool comparePavardes(studentas a, studentas  b);
 
