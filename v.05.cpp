@@ -1,20 +1,5 @@
-
-
 #include "funkcijos.h"
 #include "struktura.h"
-
-struct vargsiukai {
-    string vardai;
-    string pavardes;
-    int nd;
-};
-
-struct galvociai {
-    string vardai;
-    string pavardes;
-    int nd;
-};
-
 
 int main()
 {
