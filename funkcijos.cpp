@@ -1,59 +1,91 @@
 #include "funkcijos.h"
 
-double vid(int egzaminas, vector<int>nd)
-{
-    double v;
-    v = accumulate(nd.begin(), nd.end(), 0.000) / nd.size();
-
-    return v;
+bool compareVardai(studentas a, studentas b) {
+    return a.vardas < b.vardas;
+}
+bool comparePavardes(studentas a, studentas  b) {
+    return a.pavarde < b.pavarde;
 }
 
-double gal_rez(int egzaminas, vector<int> nd)
-{
-    double vidurkis, galutinis1;
+list<studentas> nuskaitymas() {
+	fstream failas;
 
-    vidurkis = accumulate(nd.begin(), nd.end(), 0.000) / nd.size();
-    galutinis1 = (0.4 * vidurkis) + (0.6 * egzaminas);
+	string n;
 
-    return galutinis1;
+	do {
+		try {
+			cout << "Iveskite failo pavadinima: " << endl;
+			cin >> n;
+			failas.open(n);
+
+			if (failas.fail())
+			{
+				throw runtime_error("Failas nerastas");
+			}
+		}
+		catch (runtime_error& e) {
+			cout << "Klaida! Failas tokiu pavadinimu nerastas." << endl;
+			cout << "Jusu ivestis: " << n << endl;
+			cin.clear();
+			cin.ignore(10000, '\n');
+		}
+	} while (failas.fail());
+
+	int rows = 0, cols = 0;
+	string eilute, reiksme;
+	string vardas1, pavarde1, vardas, pavarde;
+	string rez;
+	vector<string> rezultatai1;
+	vector<string> rezultatai;
+	list<studentas> grupe;
+	float galutinis;
+
+	while (getline(failas, eilute)) {
+		rows++;
+		if (rows == 1) {
+			stringstream ss(eilute);
+			while (ss >> reiksme) {
+				cols++;
+			}
+		}
+	}
+	failas.close();
+
+	failas.open(n);
+
+	if (failas.is_open()) {
+		for (int i = 0; i < 1; i++) {
+			failas >> vardas1 >> pavarde1;
+
+			for (int j = 0; j < cols - 2; j++) {
+				failas >> rez;
+				rezultatai1.push_back(rez);
+			}
+			rezultatai1.clear();
+			vector<string>().swap(rezultatai1);
+		}
+
+		for (int i = 1; i < rows; i++) {
+			failas >> vardas >> pavarde >> galutinis;
+
+			grupe.push_back(studentas{ vardas, pavarde, galutinis });
+
+		}
+	}
+	failas.close();
+	return grupe;
 }
 
-double gal_mediana(int egzaminas, vector<int> nd)
+
+
+void spausdinimas(vector<studentas>sarasas)
 {
-    vector<double> skaiciai;
-    for (int i = 0; i < nd.size(); i++) {
-        skaiciai.push_back(nd.at(i));
-    }
 
-    skaiciai.push_back(egzaminas);
-
-    sort(skaiciai.begin(), skaiciai.end());
-
-    if (skaiciai.size() % 2 == 0)
-    {
-        return (skaiciai[skaiciai.size() / 2 - 1] + skaiciai[skaiciai.size() / 2]) / 2;
-    }
-    else
-    {
-        return skaiciai[skaiciai.size() / 2];
-    }
-}
-void spausdinimas(vector<string> vardai, vector<string> pavardes, vector<double>galutinis1, vector<double> galutiniai, vector<double> galutiniai2)
-{
-    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis" << setw(25) << "Vidurkis" << setw(25) << "Mediana" << endl;
+    cout << setw(10) << "Vardas" << setw(25) << "Pavarde" << setw(25) << "Galutinis"<< endl;
     cout << "---------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < vardai.size(); i++) {
 
-        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) << galutinis1[i] << setw(25) << galutiniai[i] << setw(25) << galutiniai2[i] << endl;
+        cout << setw(5) << vardai[i] << setw(25) << pavardes[i] << setw(25) << galutinis1[i] << endl;
 
     }
 }
-bool isNumber(string s)
-{
-    for (int i = 0; i < s.length(); i++)
-        if (isdigit(s[i]) == false)
-            return false;
-
-    return true;
-}
-

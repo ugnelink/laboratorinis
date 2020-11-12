@@ -18,11 +18,15 @@ using namespace std;
 #include <fstream>
 #include <cstdio>
 #include <sstream> 
+#include <chrono>
+#include <list>
 
-double gal_rez(int, vector<int>);
-double vid(int, vector<int>);
-double gal_mediana(int, vector<int>);
-void spausdinimas(vector<string>, vector<string>, vector<double>, vector<double>, vector<double>);
-bool isNumber(string);
+#include "struktura.h";
+
+bool compareVardai(studentas a, studentas b);
+bool comparePavardes(studentas a, studentas  b);
+
+list<studentas> nuskaitymas();
+void spausdinimas(vector<studentas> sarasas);
 
 #endif
