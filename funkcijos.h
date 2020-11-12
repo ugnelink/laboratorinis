@@ -18,6 +18,8 @@ using namespace std;
 #include <fstream>
 #include <cstdio>
 #include <sstream> 
+#include <chrono>
+#include <list>
 
 #include "struktura.h";
 
