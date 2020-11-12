@@ -2,20 +2,25 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <stdlib.h>
 #include <vector>
-#include <map>
-#include <chrono>
-#include <random>
+#include <list>
 
-using hrClock = std::chrono::high_resolution_clock;
-
-typedef std::uniform_int_distribution<int> int_distribution;
-
-struct studentas {
-	std::string vardas, pavarde;
-	int nd;
+struct studentas{
+	string vardas;
+	string pavarde;
+	float galutinis;
+	vector<int> pazymiai;
+	int egzaminas;
 };
 
-studentas gen();
-void spausdinimas(std::vector<studentas>& a);
+struct vargsiukai {
+	string vardas;
+	string pavarde;
+	float galutinis;
+};
+
+struct galvociai {
+	string vardas;
+	string pavarde;
+	float galutinis;
+};
