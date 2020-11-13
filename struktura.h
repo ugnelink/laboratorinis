@@ -12,14 +12,13 @@ struct studentas{
 	vector<int> pazymiai;
 	int egzaminas;
 };
-
-struct vargsiukai {
+struct galvociai {
 	string vardas;
 	string pavarde;
 	float galutinis;
 };
 
-struct galvociai {
+struct vargsiukai {
 	string vardas;
 	string pavarde;
 	float galutinis;
